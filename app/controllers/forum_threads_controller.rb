@@ -1,5 +1,5 @@
-class ForumThreadsController < ActionController::Base
+class ForumThreadsController < ApplicationController
   def show 
-    @thread = ForumThread.find params[:id]
+    @thread = ForumThread.find(params[:id])
   end
 end

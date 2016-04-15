@@ -1,13 +1,15 @@
-class CommentsController < ActionController::Base
+class CommentsController < ApplicationController
+  before_action :authenticate_user!
+
   def create
-    head 403 and return unless current_user
-    @thread = ForumThread.find params[:forum_thread_id]
-    @comment = @thread.comments.build comment_params
+    @thread = ForumThread.find(params[:forum_thread_id])
+    @comment = @thread.comments.build(comment_params)
     @comment.user = current_user
+
     if @comment.save
-      redirect_to @thread
+      redirect_to @thread, notice: 'Successfully added new comment'
     else
-      redirect_to :back
+      redirect_to @thread, alert: "Couldn't save comment"
     end
   end
 

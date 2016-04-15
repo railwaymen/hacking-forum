@@ -1,16 +1,17 @@
-%h3= @thread.title
+%h1= @thread.title
+
 - if @thread.comments.any?
   - @thread.comments.each do |comment|
-    %p #{comment.user.email} said:
-    %hline
-    %p #{comment.content.html_safe}
+    .well
+      %h4 #{comment.user.email} said:
+      %p #{comment.content.html_safe}
 - else
   %p No comments yet. Be the first to start discussion!
 
-- if current_user
-  %p Say something! (Logged in as: #{current_user.email})
-  %hline
-  = form_for @thread.comments.build, url: forum_thread_comments_path(@thread)  do |f|
-    = f.text_area :content, size: '50x10'
-    %br
-    = f.submit 'Comment!'
+- if user_signed_in?
+  %p Say something!
+  = form_for @thread.comments.build, url: forum_thread_comments_path(@thread) do |f|
+    .form-group
+      = f.text_area :content, rows: '4', class: 'form-control'
+    .form-group
+      = f.submit 'Comment!', class: 'btn btn-default'

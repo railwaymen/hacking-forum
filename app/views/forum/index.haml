@@ -1,6 +1,6 @@
 %h1 Forum: List of Threads
 - if @threads.empty?
-  Sorry, no threads created just yet
+  %p Sorry, no threads created just yet
 - else
   - @threads.each do |thread|
     %p= link_to thread.title, forum_thread_path(thread)

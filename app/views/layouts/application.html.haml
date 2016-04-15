@@ -1,0 +1,29 @@
+!!! 5
+%html{ lang: 'en' }
+  %head
+    %meta{ charset: 'utf-8' }
+    %title Hacking Forum
+    = csrf_meta_tags
+    = stylesheet_link_tag 'application', media: 'all'
+    = javascript_include_tag 'application'
+
+  %body
+    .navbar.navbar-fixed-top.navbar-default
+      .container
+        .navbar-header
+          = link_to 'Hacking Forum', root_path, class: 'navbar-brand'
+        %div
+          %ul.nav.navbar-nav.navbar-right
+            %li
+              - if user_signed_in?
+                = link_to "Logout (#{current_user.email})", destroy_user_session_path, method: :delete
+              - else
+                = link_to 'Log in', new_user_session_path
+
+    .container
+      = bootstrap_flash
+      = yield
+
+    %footer.footer
+      .container
+        %p &copy; Railwaymen 2016
