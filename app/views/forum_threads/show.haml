@@ -3,7 +3,7 @@
   - @thread.comments.each do |comment|
     %p #{comment.user.email} said:
     %hline
-    %p #{comment.content}
+    %p #{comment.content.html_safe}
 - else
   %p No comments yet. Be the first to start discussion!
 
