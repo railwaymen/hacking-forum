@@ -5,6 +5,7 @@ gem 'pg'
 gem 'devise'
 gem 'haml'
 gem 'less-rails'
+gem 'jquery-rails'
 gem 'twitter-bootstrap-rails'
 gem 'therubyracer'
 
