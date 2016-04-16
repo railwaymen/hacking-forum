@@ -1,0 +1,16 @@
+%h3= @thread.title
+- if @thread.comments.any?
+  - @thread.comments.each do |comment|
+    %p #{comment.user.email} said:
+    %hline
+    %p #{comment.content}
+- else
+  %p No comments yet. Be the first to start discussion!
+
+- if current_user
+  %p Say something! (Logged in as: #{current_user.email})
+  %hline
+  = form_for @thread.comments.build, url: forum_thread_comments_path(@thread)  do |f|
+    = f.text_area :content, size: '50x10'
+    %br
+    = f.submit 'Comment!'

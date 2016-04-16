@@ -3,4 +3,4 @@
   Sorry, no threads created just yet
 - else
   - @threads.each do |thread|
-    %h3= thread.title
+    %p= link_to thread.title, forum_thread_path(thread)
