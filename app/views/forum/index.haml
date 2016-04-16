@@ -1,0 +1,6 @@
+%h1 Forum: List of Threads
+- if @threads.empty?
+  Sorry, no threads created just yet
+- else
+  - @threads.each do |thread|
+    %h3= thread.title
